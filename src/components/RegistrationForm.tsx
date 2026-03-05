@@ -83,7 +83,7 @@ export default function RegistrationForm() {
                                 <input
                                     type="text"
                                     id="name"
-                                    name="entry.2005620554"
+                                    name="entry.2080830736"
                                     placeholder="กรุณากรอกชื่อ-นามสกุล"
                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all text-gray-900 outline-none"
                                     required
@@ -96,7 +96,7 @@ export default function RegistrationForm() {
                                 <input
                                     type="tel"
                                     id="phone"
-                                    name="entry.1045781291"
+                                    name="entry.961024856"
                                     placeholder="กรุณากรอกเบอร์โทรศัพท์"
                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all text-gray-900 outline-none"
                                     required
