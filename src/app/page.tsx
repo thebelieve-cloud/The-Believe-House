@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Concept from "@/components/Concept";
 import HouseTypes from "@/components/HouseTypes";
 import Facilities from "@/components/Facilities";
+import ConstructionProgress from "@/components/ConstructionProgress";
 import LocationMap from "@/components/LocationMap";
 import RegistrationForm from "@/components/RegistrationForm";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ export default function Home() {
       <HouseTypes />
       <Concept />
       <Facilities />
+      <ConstructionProgress />
       <LocationMap />
       <Contact />
       <RegistrationForm />
