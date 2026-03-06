@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -54,6 +55,9 @@ export const metadata: Metadata = {
     icon: "/favicon-the-believe-house.jpg",
     shortcut: "/favicon-the-believe-house.jpg",
     apple: "/favicon-the-believe-house.jpg",
+  },
+  verification: {
+    google: "F1ITXGIFI8yd-EKCnsSUVxs6_CrVDY0OKTFhRuppJjg",
   },
   alternates: {
     canonical: SITE_URL, // บอก Google ว่าหน้าเว็บที่ถูกต้องคือ URL อะไร (ป้องกัน Content ซ้ำ)
@@ -110,6 +114,7 @@ export default function RootLayout({
       </head>
       <body className={`${prompt.variable} font-sans antialiased bg-white text-gray-900`}>
         {children}
+        <GoogleAnalytics gaId="G-VHJ7KEQEP5" />
       </body>
     </html>
   );
