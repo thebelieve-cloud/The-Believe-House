@@ -6,7 +6,7 @@ import Facilities from "@/components/Facilities";
 import LocationMap from "@/components/LocationMap";
 import RegistrationForm from "@/components/RegistrationForm";
 import Footer from "@/components/Footer";
-import ConstructionProgress from "@/components/ConstructionProgress";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -16,8 +16,8 @@ export default function Home() {
       <HouseTypes />
       <Concept />
       <Facilities />
-      <ConstructionProgress />
       <LocationMap />
+      <Contact />
       <RegistrationForm />
       <Footer />
     </main>

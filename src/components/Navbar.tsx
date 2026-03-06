@@ -17,10 +17,10 @@ export default function Navbar() {
 
     const navLinks = [
         { name: "หน้าแรก", href: "/" },
-        { name: "แนวคิดโครงการ", href: "/#concept" },
         { name: "แบบบ้าน", href: "/#houses" },
-        { name: "ภาพโครงการระหว่างก่อสร้าง", href: "/#progress" },
+        { name: "แนวคิดโครงการ", href: "/#concept" },
         { name: "ทำเลที่ตั้ง", href: "/#location" },
+        { name: "ติดต่อเรา", href: "/#contact" },
         { name: "บทความ", href: "/blog" },
     ];
 
