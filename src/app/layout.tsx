@@ -50,6 +50,11 @@ export const metadata: Metadata = {
   },
 
   // อื่นๆ สำหรับ SEO
+  icons: {
+    icon: "/favicon-the-believe-house.jpg",
+    shortcut: "/favicon-the-believe-house.jpg",
+    apple: "/favicon-the-believe-house.jpg",
+  },
   alternates: {
     canonical: SITE_URL, // บอก Google ว่าหน้าเว็บที่ถูกต้องคือ URL อะไร (ป้องกัน Content ซ้ำ)
   },

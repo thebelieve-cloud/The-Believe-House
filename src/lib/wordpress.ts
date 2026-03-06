@@ -30,9 +30,7 @@ export async function getAllPosts() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
-      // Next.js: ตั้งค่าระยะเวลาให้ Cache ข้อมูล (Revalidation) เช่น อัปเดตทุกๆ 1 ชั่วโมง (3600 วิ)
-      // หรือใช้ cache: 'no-store' ถ้าอยากให้โหลดสดใหม่ตลอด
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -58,7 +56,6 @@ export async function getPostBySlug(slug: string) {
         seo {
           title
           metaDesc
-          # หากใช้ปลั๊กอิน Yoast SEO ร่วมกับ WPGraphQL สามารถดึง Metadata ออกมาได้ตรงๆ
         }
         featuredImage {
           node {
@@ -71,11 +68,12 @@ export async function getPostBySlug(slug: string) {
   `;
 
   try {
+    const decodedSlug = decodeURIComponent(slug);
     const res = await fetch(WP_GRAPHQL_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query, variables: { id: slug } }),
-      next: { revalidate: 3600 },
+      body: JSON.stringify({ query, variables: { id: decodedSlug } }),
+      cache: "no-store",
     });
 
     const { data } = await res.json();
