@@ -45,7 +45,7 @@ export default function Contact() {
 
                     {/* Phone */}
                     <motion.a
-                        href="tel:0944462645"
+                        href="tel:090 949 2492"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -56,7 +56,7 @@ export default function Contact() {
                             <Phone className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" />
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2">โทรศัพท์</h3>
-                        <p className="text-gray-500 mb-4">094 446 2645</p>
+                        <p className="text-gray-500 mb-4">090 949 2492</p>
                         <span className="text-sm font-medium text-primary">โทรออก</span>
                     </motion.a>
 
