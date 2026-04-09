@@ -50,13 +50,13 @@ export default function Navbar() {
                         </a>
                     ))}
                     <a
-                        href="#register"
+                        href="#contact"
                         className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${scrolled
                             ? "bg-primary text-white hover:bg-primary/90 shadow-md"
                             : "bg-white text-primary hover:bg-white/90"
                             }`}
                     >
-                        ลงทะเบียนรับสิทธิพิเศษ
+                        ติดต่อเรา
                     </a>
                 </nav>
 
@@ -94,11 +94,11 @@ export default function Navbar() {
                                     </a>
                                 ))}
                                 <a
-                                    href="#register"
+                                    href="#contact"
                                     className="mt-6 px-8 py-4 bg-primary text-white rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
-                                    ลงทะเบียนรับสิทธิพิเศษ
+                                    ติดต่อเรา
                                 </a>
                             </div>
                         </motion.div>

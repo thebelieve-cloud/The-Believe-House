@@ -93,10 +93,10 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.8 }}
                 >
                     <a
-                        href="#register"
+                        href="#contact"
                         className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary rounded-full font-semibold transition-all hover:bg-gray-100 hover:scale-105 shadow-lg group"
                     >
-                        ลงทะเบียนรับสิทธิพิเศษ
+                        ติดต่อเรา
                     </a>
                 </motion.div>
             </div>
