@@ -36,7 +36,7 @@ export default function Hero() {
                     <img
                         src="/asset/the believe logo.jpg"
                         alt="The Believe Logo"
-                        className="h-24 md:h-32 object-contain shadow-2xl rounded-sm"
+                        className="h-32 md:h-48 lg:h-56 object-contain shadow-2xl rounded-md"
                     />
                 </motion.div>
 

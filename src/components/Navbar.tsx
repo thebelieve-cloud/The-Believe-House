@@ -31,8 +31,13 @@ export default function Navbar() {
         >
             <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
                 {/* Logo */}
-                <a href="/" className="flex-shrink-0 z-50 group">
-                    <h2 className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${scrolled ? 'text-primary' : 'text-white group-hover:text-white/80'}`}>
+                <a href="/" className="flex-shrink-0 z-50 group flex items-center gap-3">
+                    <img 
+                        src="/asset/the believe logo.jpg" 
+                        alt="The Believe Logo" 
+                        className="h-10 md:h-12 w-auto object-contain rounded-sm shadow-sm" 
+                    />
+                    <h2 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 hidden sm:block ${scrolled ? 'text-primary' : 'text-white group-hover:text-white/80'}`}>
                         THE BELIEVE
                     </h2>
                 </a>
