@@ -23,6 +23,26 @@ export default function Concept() {
                     </p>
                 </motion.div>
 
+                {/* Video Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="w-full max-w-[360px] mx-auto mb-24 rounded-2xl overflow-hidden shadow-2xl relative aspect-[9/16]"
+                >
+                    <video
+                        className="absolute inset-0 w-full h-full object-cover"
+                        controls
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src="/asset/TheBelieveClip.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </motion.div>
+
                 {/* Alternating Grid - Block 1 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-24">
                     <motion.div

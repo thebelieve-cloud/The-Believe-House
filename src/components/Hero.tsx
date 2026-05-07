@@ -49,23 +49,7 @@ export default function Hero() {
                     <span className="text-white/90 text-sm tracking-widest uppercase font-medium">สัมผัสประสบการณ์การอยู่อาศัยระดับพรีเมียม</span>
                 </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-                    className="mb-8 relative group"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-600 opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
-                    <div className="relative bg-gradient-to-r from-amber-700/20 via-yellow-500/20 to-amber-700/20 border border-amber-300/40 backdrop-blur-md px-6 py-2.5 rounded-full inline-flex items-center shadow-[0_0_20px_rgba(251,191,36,0.15)]">
-                        <span className="relative flex h-3 w-3 mr-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
-                        </span>
-                        <span className="text-yellow-100 font-semibold tracking-wider text-sm md:text-base">
-                            GRAND OPENING <span className="text-yellow-400 font-bold ml-1">1 พฤษภาคม 2569</span>
-                        </span>
-                    </div>
-                </motion.div>
+
 
                 <motion.h1
                     initial={{ opacity: 0, y: 40 }}
