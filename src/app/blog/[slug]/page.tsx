@@ -71,7 +71,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                     </header>
 
                     <div
-                        className="prose prose-lg md:prose-xl max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-600 prose-p:font-light prose-a:text-primary hover:prose-a:text-amber-700 prose-img:rounded-2xl prose-img:shadow-md mt-8"
+                        className="article-content mt-8"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
 
