@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,6 +16,8 @@ export default function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const solid = scrolled || pathname !== "/";
 
     const navLinks = [
         { name: "หน้าแรก", href: "/" },
@@ -26,7 +30,7 @@ export default function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${solid ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
                 }`}
         >
             <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -37,7 +41,7 @@ export default function Navbar() {
                         alt="The Believe Logo" 
                         className="h-10 md:h-12 w-auto object-contain rounded-sm shadow-sm" 
                     />
-                    <h2 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 hidden sm:block ${scrolled ? 'text-primary' : 'text-white group-hover:text-white/80'}`}>
+                    <h2 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 hidden sm:block ${solid ? 'text-primary' : 'text-white group-hover:text-white/80'}`}>
                         THE BELIEVE
                     </h2>
                 </a>
@@ -48,7 +52,7 @@ export default function Navbar() {
                         <a
                             key={link.name}
                             href={link.href}
-                            className={`text-sm font-medium transition-colors hover:opacity-70 ${scrolled ? "text-gray-800" : "text-white"
+                            className={`text-sm font-medium transition-colors hover:opacity-70 ${solid ? "text-gray-800" : "text-white"
                                 }`}
                         >
                             {link.name}
@@ -56,7 +60,7 @@ export default function Navbar() {
                     ))}
                     <a
                         href="#contact"
-                        className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${scrolled
+                        className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${solid
                             ? "bg-primary text-white hover:bg-primary/90 shadow-md"
                             : "bg-white text-primary hover:bg-white/90"
                             }`}
@@ -71,7 +75,7 @@ export default function Navbar() {
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle menu"
                 >
-                    <div className={`w-6 flex flex-col items-end justify-center gap-1.5 transition-all ${scrolled ? 'text-primary' : 'text-white'}`}>
+                    <div className={`w-6 flex flex-col items-end justify-center gap-1.5 transition-all ${solid ? 'text-primary' : 'text-white'}`}>
                         <span className={`block h-0.5 w-full bg-current transition-transform duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
                         <span className={`block h-0.5 w-4 bg-current transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
                         <span className={`block h-0.5 w-full bg-current transition-transform duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />

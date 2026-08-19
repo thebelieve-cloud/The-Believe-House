@@ -1,32 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bed, Bath, Car, Maximize } from "lucide-react";
+import Link from "next/link";
+import { Bed, Bath, Car, Maximize, ArrowRight } from "lucide-react";
+import { houses } from "@/lib/houses";
 
 export default function HouseTypes() {
-    const houses = [
-        {
-            name: "Venita",
-            type: "บ้านแฝด",
-            area: "140 ตร.ม.",
-            beds: 3,
-            baths: 3,
-            cars: 2,
-            description: "บ้านแฝดดีไซน์โปร่งสไตล์โมเดิร์น พร้อมพื้นที่ใช้สอยกว้างขวาง ตอบโจทย์ครอบครัวขยาย",
-            img: "/asset/venita.jpg"
-        },
-        {
-            name: "Vera",
-            type: "บ้านทาวน์แฝด",
-            area: "100 ตร.ม.",
-            beds: 3,
-            baths: 2,
-            cars: 2,
-            description: "ทาวน์แฝดฟังก์ชันครบครัน รูปแบบใหม่ที่ให้ความรู้สึกว่าความคุ้มค่านั้นมีอยู่จริง",
-            img: "/asset/vera.jpg"
-        }
-    ];
-
     return (
         <section id="houses" className="py-24 md:py-32 bg-gray-50 relative">
             <div className="container mx-auto px-6 md:px-12 max-w-7xl">
@@ -101,6 +80,14 @@ export default function HouseTypes() {
                                         <span className="font-semibold text-gray-900">{house.cars} คัน</span>
                                     </div>
                                 </div>
+
+                                <Link
+                                    href={`/houses/${house.slug}`}
+                                    className="mt-8 inline-flex items-center justify-center gap-2 w-full bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
+                                >
+                                    ดูบ้าน {house.name}
+                                    <ArrowRight className="w-5 h-5" />
+                                </Link>
                             </div>
                         </motion.div>
                     ))}

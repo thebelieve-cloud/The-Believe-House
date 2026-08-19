@@ -6,15 +6,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ConstructionProgress() {
     const images = [
-        "/process/528032049_122141138036721148_4119201378528280415_n.jpg",
-        "/process/532913179_122142493250721148_3623480982944915123_n.jpg",
-        "/process/533411196_122142784406721148_5473174832448602354_n.jpg",
-        "/process/557627554_122148584894721148_7245833304356872045_n.jpg",
-        "/process/557749309_122149060934721148_4935346295902412515_n.jpg",
-        "/process/560373444_122149484282721148_6573677123843256869_n.jpg",
-        "/process/588737061_122156499812721148_1051851871213330782_n.jpg",
-        "/process/591136727_122156499776721148_9019841750424328209_n.jpg",
-        "/process/597965774_122158792238721148_9171176951859597353_n.jpg"
+        "/project/house-3000.jpg",
+        "/project/house-3004.jpg",
+        "/project/house-3005.jpg",
+        "/project/house-4030.jpg",
+        "/project/house-4044.jpg",
+        "/project/house-4053.jpg",
+        "/project/house-4092.jpg",
+        "/project/house-4099.jpg",
+        "/project/house-4113.jpg"
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,15 +64,15 @@ export default function ConstructionProgress() {
                     className="text-center mb-16 md:mb-20"
                 >
                     <span className="text-primary font-semibold tracking-wider text-sm md:text-base uppercase mb-2 block">
-                        Construction Progress
+                        Project Gallery
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">ภาพโครงการระหว่างก่อสร้าง</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">ภาพโครงการ The Believe House</h2>
                     <div className="w-24 h-1 bg-primary mx-auto mb-10 rounded-full"></div>
                 </motion.div>
 
                 {/* 3D Carousel Container */}
                 <div
-                    className="relative w-full max-w-6xl mx-auto h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center perspective-[1000px]"
+                    className="relative w-full max-w-6xl mx-auto h-[300px] md:h-[400px] lg:h-[480px] flex items-center justify-center perspective-[1000px]"
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     onTouchStart={() => setIsPaused(true)}
@@ -144,11 +144,11 @@ export default function ConstructionProgress() {
                                 onClick={() => {
                                     if (distance !== 0) setCurrentIndex(index);
                                 }}
-                                className={`absolute w-[220px] md:w-[320px] lg:w-[400px] aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-white border-[6px] md:border-8 border-white cursor-pointer ${distance === 0 ? "pointer-events-auto" : "pointer-events-auto"}`}
+                                className={`absolute w-[300px] md:w-[460px] lg:w-[560px] aspect-[3/2] rounded-3xl overflow-hidden shadow-2xl bg-white border-[6px] md:border-8 border-white cursor-pointer ${distance === 0 ? "pointer-events-auto" : "pointer-events-auto"}`}
                             >
                                 <img
                                     src={img}
-                                    alt={`Progress ${index + 1}`}
+                                    alt={`ภาพโครงการ The Believe House ${index + 1}`}
                                     className="w-full h-full object-cover pointer-events-none rounded-2xl"
                                 />
                                 {/* Dark overlay for background cards */}
