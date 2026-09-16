@@ -106,6 +106,10 @@ export default function RootLayout({
   return (
     <html lang="th" className="scroll-smooth">
       <head>
+                <meta
+          name="facebook-domain-verification"
+          content="cygdalvjf02d4r5dblboszg7uhw676"
+        />
         {/* แทรก JSON-LD ลงใน <head> ของเว็บ */}
         <script
           type="application/ld+json"
