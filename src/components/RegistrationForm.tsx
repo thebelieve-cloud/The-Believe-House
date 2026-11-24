@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
+const PHONE_ENTRY = "entry.961024856";
+
 export default function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -14,6 +16,20 @@ export default function RegistrationForm() {
 
         const form = e.currentTarget;
         const formData = new FormData(form);
+
+        // LINE ID: ถ้าใน Google Form ยังไม่มีคำถาม LINE ให้ต่อท้ายไปกับช่องเบอร์โทร
+        // เมื่อเพิ่มคำถาม LINE ใน Google Form แล้ว ให้ใส่เลข entry ของคำถามนั้นใน LINE_ENTRY_ID
+        const LINE_ENTRY_ID = "";
+        const lineId = String(formData.get("line_id") ?? "").trim();
+        formData.delete("line_id");
+        if (lineId) {
+            if (LINE_ENTRY_ID) {
+                formData.set(`entry.${LINE_ENTRY_ID}`, lineId);
+            } else {
+                const phone = String(formData.get(PHONE_ENTRY) ?? "");
+                formData.set(PHONE_ENTRY, `${phone} (LINE: ${lineId})`);
+            }
+        }
 
         // เปลี่ยนจาก /viewform เป็น /formResponse สำหรับการส่งข้อมูล
         const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeaNg249zRku_nGar0va7pkXK3JKHV6lY2O9dy23lhVawH9-Q/formResponse";
@@ -96,10 +112,23 @@ export default function RegistrationForm() {
                                 <input
                                     type="tel"
                                     id="phone"
-                                    name="entry.961024856"
+                                    name={PHONE_ENTRY}
                                     placeholder="กรุณากรอกเบอร์โทรศัพท์"
                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all text-gray-900 outline-none"
                                     required
+                                    disabled={isSubmitting}
+                                />
+                            </div>
+
+                            <div className="relative">
+                                <label htmlFor="line" className="block text-sm font-medium text-gray-700 mb-2 ml-1">LINE ID</label>
+                                <input
+                                    type="text"
+                                    id="line"
+                                    name="line_id"
+                                    placeholder="กรุณากรอก LINE ID ของคุณ"
+                                    autoComplete="off"
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all text-gray-900 outline-none"
                                     disabled={isSubmitting}
                                 />
                             </div>
