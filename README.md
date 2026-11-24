@@ -45,6 +45,22 @@ cp .env.example .env.local
 
 ไม่มีไฟล์ดิบเหล่านี้เว็บก็ยังทำงานได้ เพราะเว็บใช้รูปที่ย่อขนาดแล้วใน `public/`
 
+### 3. สิทธิ์ push ขึ้น GitHub
+
+repo นี้อยู่ใต้บัญชี `thebelieve-cloud` จึง push ได้เฉพาะบัญชีที่มีสิทธิ์เขียน repo นี้
+
+1. login GitHub ด้วยบัญชี thebelieve-cloud → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**
+   - Repository access: **Only select repositories** → `The-Believe-House`
+   - Permissions: **Contents → Read and write**
+2. ให้โฟลเดอร์โปรเจกต์ push ด้วยบัญชีนี้
+
+   ```bash
+   git remote set-url origin https://thebelieve-cloud@github.com/thebelieve-cloud/The-Believe-House.git
+   ```
+
+3. `git push` ครั้งแรกจะถาม Password ให้วาง token ลงไป (พิมพ์แล้วจะไม่เห็นตัวอักษร ซึ่งเป็นเรื่องปกติ)
+   หลังจากนั้น macOS จะจำไว้ใน Keychain
+
 ## โครงสร้างโปรเจกต์
 
 ```
