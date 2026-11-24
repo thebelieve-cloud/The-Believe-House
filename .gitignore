@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw media — too large for GitHub (files >100MB, ~1.6GB total).
+# Copy these to a new computer by hand (see README).
+/The Believe/
+/asset/*/
+/asset/*.zip
+
+# Local editor / AI tool data
+/.nimbalyst/
+.claude/settings.local.json

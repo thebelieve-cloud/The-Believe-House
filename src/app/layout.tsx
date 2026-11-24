@@ -106,7 +106,7 @@ export default function RootLayout({
   return (
     <html lang="th" className="scroll-smooth">
       <head>
-                <meta
+        <meta
           name="facebook-domain-verification"
           content="cygdalvjf02d4r5dblboszg7uhw676"
         />
