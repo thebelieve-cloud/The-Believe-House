@@ -6,6 +6,26 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
+// ดึงบทความใหม่ทุก 10 นาที
+export const revalidate = 600;
+
+// ตัดแท็ก HTML และแปลง &amp; / &#8211; ฯลฯ ให้เป็นข้อความธรรมดา (ใช้ใน title/description)
+function cleanText(html?: string | null): string {
+    if (!html) return "";
+    return html
+        .replace(/<[^>]+>/g, "")
+        .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+        .replace(/&nbsp;/g, " ")
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;|&apos;/g, "'")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/\[&hellip;\]|&hellip;/g, "…")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const post = await getPostBySlug(slug);
@@ -16,12 +36,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    // Yoast ใส่ชื่อเว็บหลังบ้านต่อท้าย (" - backend.thebelievehouse.com") ต้องตัดออก
+    // layout เติม " | The Believe House สามพราน" ให้เองจาก title.template
+    const title = cleanText(post.seo?.title || post.title)
+        .replace(/\s*[-|–]\s*backend\.thebelievehouse\.com.*$/i, "")
+        .replace(/\s*[-|–]\s*The Believe House.*$/i, "")
+        || cleanText(post.title);
+    const description =
+        cleanText(post.seo?.metaDesc) || cleanText(post.excerpt).slice(0, 160) || "บทความจาก The Believe House สามพราน";
+    const url = `/blog/${post.slug || slug}`;
+
     return {
-        title: `${post.seo?.title || post.title} | The Believe House`,
-        description: post.seo?.metaDesc || post.excerpt?.replace(/<[^>]+>/g, '') || "บทความจาก The Believe House",
+        title,
+        description,
+        alternates: { canonical: url },
         openGraph: {
-            title: post.title,
-            description: post.seo?.metaDesc || "บทความจาก The Believe House",
+            type: "article",
+            url,
+            title,
+            description,
+            publishedTime: post.date,
+            modifiedTime: post.modified,
             images: post.featuredImage?.node?.sourceUrl ? [post.featuredImage.node.sourceUrl] : [],
         },
     };

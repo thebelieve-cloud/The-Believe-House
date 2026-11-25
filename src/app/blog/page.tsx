@@ -2,10 +2,21 @@ import { getAllPosts } from "@/lib/wordpress";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-    title: "บทความและข่าวสาร | The Believe House",
+// ดึงบทความใหม่ทุก 10 นาที (ไม่ต้องรอ WordPress ทุกครั้งที่มีคนเข้า)
+export const revalidate = 600;
+
+export const metadata: Metadata = {
+    // layout เติม " | The Believe House สามพราน" ให้เองจาก title.template
+    title: "บทความเรื่องบ้านและการซื้อบ้านสามพราน",
     description: "อัปเดตข่าวสารและบทความน่ารู้เกี่ยวกับบ้านและการอยู่อาศัย จากโครงการ The Believe House สามพราน",
+    alternates: { canonical: "/blog" },
+    openGraph: {
+        title: "บทความเรื่องบ้านและการซื้อบ้านสามพราน | The Believe House",
+        description: "อัปเดตข่าวสารและบทความน่ารู้เกี่ยวกับบ้านและการอยู่อาศัย จากโครงการ The Believe House สามพราน",
+        url: "/blog",
+    },
 };
 
 export default async function BlogPage() {

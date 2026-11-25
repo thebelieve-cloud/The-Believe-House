@@ -9,6 +9,11 @@ import CustomerTrust from "@/components/CustomerTrust";
 import RegistrationForm from "@/components/RegistrationForm";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

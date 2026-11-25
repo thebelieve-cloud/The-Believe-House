@@ -7,7 +7,7 @@ const WP_GRAPHQL_URL = "https://backend.thebelievehouse.com/graphql";
 export async function getAllPosts() {
   const query = `
     query SelectAllPosts {
-      posts(first: 10, where: { orderby: { field: DATE, order: DESC } }) {
+      posts(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
           id
           title
@@ -30,7 +30,7 @@ export async function getAllPosts() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
-      cache: "no-store",
+      next: { revalidate: 600 }, // เก็บแคช 10 นาที (บทความใหม่ขึ้นเองภายใน 10 นาที)
     });
 
     if (!res.ok) {
@@ -51,8 +51,11 @@ export async function getPostBySlug(slug: string) {
     query SelectPostBySlug($id: ID!) {
       post(id: $id, idType: SLUG) {
         title
+        slug
         content
+        excerpt
         date
+        modified
         seo {
           title
           metaDesc
@@ -73,7 +76,7 @@ export async function getPostBySlug(slug: string) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query, variables: { id: decodedSlug } }),
-      cache: "no-store",
+      next: { revalidate: 600 }, // เก็บแคช 10 นาที (บทความใหม่ขึ้นเองภายใน 10 นาที)
     });
 
     const { data } = await res.json();
@@ -81,5 +84,34 @@ export async function getPostBySlug(slug: string) {
   } catch (error) {
     console.error("Error fetching post data:", error);
     return null;
+  }
+}
+
+// ฟังก์ชันสำหรับ sitemap: ดึง slug และวันแก้ไขล่าสุดของบทความทั้งหมด
+export async function getAllPostSlugs(): Promise<{ slug: string; modified: string }[]> {
+  const query = `
+    query AllPostSlugs {
+      posts(first: 500, where: { status: PUBLISH }) {
+        nodes {
+          slug
+          modified
+        }
+      }
+    }
+  `;
+
+  try {
+    const res = await fetch(WP_GRAPHQL_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) throw new Error(`Failed to fetch API: ${res.statusText}`);
+    const { data } = await res.json();
+    return data?.posts?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching post slugs for sitemap:", error);
+    return [];
   }
 }

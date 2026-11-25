@@ -59,9 +59,8 @@ export const metadata: Metadata = {
   verification: {
     google: "F1ITXGIFI8yd-EKCnsSUVxs6_CrVDY0OKTFhRuppJjg",
   },
-  alternates: {
-    canonical: SITE_URL, // บอก Google ว่าหน้าเว็บที่ถูกต้องคือ URL อะไร (ป้องกัน Content ซ้ำ)
-  },
+  // canonical ต้องตั้งแยกในแต่ละหน้า (page.tsx) ห้ามตั้งที่นี่
+  // เพราะ layout ใช้กับทุกหน้า ถ้าตั้งเป็นหน้าแรก Google จะมองว่าบทความทุกหน้าเป็นหน้าซ้ำของหน้าแรก
   robots: {
     index: true,
     follow: true,

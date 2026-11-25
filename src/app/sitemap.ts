@@ -1,9 +1,17 @@
 import { MetadataRoute } from 'next';
 import { houses } from '@/lib/houses';
+import { getAllPostSlugs } from '@/lib/wordpress';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-    // URLs สำหรับหน้าเว็บหลัก
+// สร้าง sitemap ใหม่ทุก 10 นาที เพื่อให้บทความที่ลงใหม่ใน WordPress เข้า sitemap เอง
+export const revalidate = 600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://thebelievehouse.com';
+    const posts = await getAllPostSlugs();
+    const latestPost = posts.reduce<string | undefined>(
+        (max, p) => (!max || p.modified > max ? p.modified : max),
+        undefined,
+    );
 
     return [
         {
@@ -17,6 +25,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
+        })),
+        {
+            url: `${baseUrl}/blog`,
+            lastModified: latestPost ? new Date(latestPost) : new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        ...posts.map((post) => ({
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: new Date(post.modified),
+            changeFrequency: 'monthly' as const,
+            priority: 0.7,
         })),
     ];
 }

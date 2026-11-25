@@ -17,11 +17,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!house) return {};
 
     return {
-        title: `บ้าน ${house.name} (${house.nameTh}) | The Believe House`,
+        // layout เติม " | The Believe House สามพราน" ให้เอง
+        title: `บ้าน ${house.name} (${house.nameTh})`,
         description: `${house.description} ${house.type} พื้นที่ใช้สอย ${house.area} ${house.beds} ห้องนอน ${house.baths} ห้องน้ำ ที่จอดรถ ${house.cars} คัน`,
+        alternates: { canonical: `/houses/${house.slug}` },
         openGraph: {
             title: `บ้าน ${house.name} | The Believe House`,
             description: house.description,
+            url: `/houses/${house.slug}`,
             images: [house.gallery[0]],
         },
     };
