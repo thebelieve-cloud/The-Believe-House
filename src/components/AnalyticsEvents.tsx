@@ -16,6 +16,8 @@ export default function AnalyticsEvents() {
                 sendGAEvent("event", "click_call", { page_path: page, link_text: a.textContent?.trim().slice(0, 50) });
             } else if (/lin\.ee|line\.me/i.test(href)) {
                 sendGAEvent("event", "click_line", { page_path: page });
+            } else if (/m\.me\/|messenger\.com/i.test(href)) {
+                sendGAEvent("event", "click_messenger", { page_path: page });
             }
         };
         document.addEventListener("click", onClick, { capture: true });

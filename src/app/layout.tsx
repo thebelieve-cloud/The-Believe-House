@@ -3,6 +3,7 @@ import { Prompt } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import MobileContactBar from "@/components/MobileContactBar";
+import DesktopContactDock from "@/components/DesktopContactDock";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -123,6 +124,7 @@ export default function RootLayout({
       <body className={`${prompt.variable} font-sans antialiased bg-white text-gray-900`}>
         {children}
         <MobileContactBar />
+        <DesktopContactDock />
         <GoogleAnalytics gaId="G-VHJ7KEQEP5" />
         <AnalyticsEvents />
       </body>

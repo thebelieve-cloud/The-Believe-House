@@ -12,7 +12,7 @@ export default function MobileContactBar() {
                 aria-label="ติดต่อโครงการ"
                 className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-[env(safe-area-inset-bottom)]"
             >
-                <div className="grid grid-cols-3 h-16">
+                <div className="grid grid-cols-4 h-16">
                     <a
                         href="tel:0909492492"
                         className="flex flex-col items-center justify-center gap-0.5 text-primary active:bg-gray-100"
@@ -28,6 +28,17 @@ export default function MobileContactBar() {
                     >
                         <MessageCircle className="w-5 h-5" aria-hidden="true" />
                         <span className="text-xs font-medium">LINE</span>
+                    </a>
+                    <a
+                        href="https://m.me/thebelievehouse"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center justify-center gap-0.5 text-[#0084FF] active:bg-gray-100 border-r border-gray-100"
+                    >
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-5 h-5">
+                            <path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.98-.87a.8.8 0 0 1 .53-.04c.91.25 1.88.38 2.91.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z" />
+                        </svg>
+                        <span className="text-xs font-medium">Messenger</span>
                     </a>
                     <Link
                         href="/#register"
