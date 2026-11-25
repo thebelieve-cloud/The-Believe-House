@@ -61,7 +61,7 @@ export default function PromotionCarousel({ items }: { items: Promotion[] }) {
             <div
                 ref={track}
                 onScroll={onScroll}
-                className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-6 px-[14vw] md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${overflow ? "" : "md:justify-center"}`}
+                className={`flex gap-6 lg:gap-10 overflow-x-auto snap-x snap-mandatory scroll-smooth py-6 px-[14vw] md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${overflow ? "" : "md:justify-center"}`}
                 aria-roledescription="carousel"
                 aria-label="โปรโมชัน"
             >
@@ -70,21 +70,22 @@ export default function PromotionCarousel({ items }: { items: Promotion[] }) {
                         key={p.slug}
                         href={`/promotion#${p.slug}`}
                         aria-label={p.title}
-                        className={`group snap-center shrink-0 w-[72vw] sm:w-[360px] md:w-[400px] transition-all duration-500 ${
+                        className={`group snap-center shrink-0 w-[72vw] sm:w-[360px] md:w-[400px] lg:w-[440px] transition-all duration-500 ${
                             overflow && i !== active ? "scale-[0.92] opacity-70" : "scale-100 opacity-100"
                         }`}
                     >
-                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gray-100 shadow-[0_20px_50px_rgba(0,30,57,0.15)]">
+                        {/* รูปโปรใช้สัดส่วน 4:5 (เช่น 1080x1350) ทุกใบ การ์ดจึงเท่ากันและเต็มกรอบ */}
+                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gray-100 shadow-[0_20px_50px_rgba(0,30,57,0.15)] ring-1 ring-black/5 transition-shadow duration-500 group-hover:shadow-[0_28px_60px_rgba(0,30,57,0.22)]">
                             <Image
                                 src={p.image}
                                 alt={p.imageAlt}
                                 fill
-                                sizes="(max-width: 640px) 72vw, 400px"
-                                className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                                sizes="(max-width: 640px) 72vw, 440px"
+                                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                                 priority={i === 0}
                             />
                         </div>
-                        <p className="mt-4 text-center font-semibold text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
+                        <p className="mt-5 px-2 text-center text-base md:text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
                             {p.title}
                         </p>
                     </Link>
