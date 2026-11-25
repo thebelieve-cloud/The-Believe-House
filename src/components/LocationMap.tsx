@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Navigation, ExternalLink, Car } from "lucide-react";
+import { MapPin, Navigation, ExternalLink } from "lucide-react";
+import NearbyPlaces from "@/components/NearbyPlaces";
 
 // พิกัดโครงการจาก Google Maps (หมุด "The Believe House")
 const LAT = 13.7410185;
@@ -14,14 +15,6 @@ const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${LAT
 // (cid มาจาก 0x1a156361f7ef3039 ในลิงก์ maps.app.goo.gl/Po88Su7zmDBR1eJV7)
 const PLACE_CID = "1879517691919675449";
 const EMBED_URL = `https://maps.google.com/maps?cid=${PLACE_CID}&z=15&hl=th&output=embed`;
-
-// ระยะทาง/เวลาเดินทางโดยรถยนต์ ตามข้อมูลโครงการ (เวลาจริงขึ้นกับการจราจร)
-const NEARBY = [
-    { place: "ถนนเพชรเกษม", detail: "ประมาณ 500 เมตร" },
-    { place: "ตลาดสดเทศบาลเมืองสามพราน", detail: "2.1 กม. ราว 5 นาที" },
-    { place: "ถนนบรมราชชนนี", detail: "ราว 6 นาที" },
-    { place: "เซ็นทรัล ศาลายา", detail: "ราว 15 นาที" },
-];
 
 export default function LocationMap() {
     return (
@@ -90,21 +83,8 @@ export default function LocationMap() {
                     </a>
                 </div>
 
-                {/* จุดสำคัญใกล้โครงการ */}
-                <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {NEARBY.map((n) => (
-                        <li key={n.place} className="flex items-start gap-3 rounded-2xl bg-gray-50 p-5">
-                            <span className="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
-                                <Car className="w-5 h-5 text-primary" aria-hidden="true" />
-                            </span>
-                            <span>
-                                <span className="block font-semibold text-gray-900">{n.place}</span>
-                                <span className="block text-sm text-gray-500">{n.detail}</span>
-                            </span>
-                        </li>
-                    ))}
-                </ul>
-                <p className="mt-3 text-center text-xs text-gray-400">*เวลาเดินทางโดยรถยนต์โดยประมาณ อาจเปลี่ยนตามสภาพการจราจร</p>
+                {/* สถานที่สำคัญใกล้โครงการ 4 หมวด (ข้อมูลใน src/lib/nearby.ts) */}
+                <NearbyPlaces />
             </div>
         </section>
     );
