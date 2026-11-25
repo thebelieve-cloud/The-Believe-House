@@ -9,7 +9,11 @@ import CustomerTrust from "@/components/CustomerTrust";
 import RegistrationForm from "@/components/RegistrationForm";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import Promotions from "@/components/Promotions";
 import type { Metadata } from "next";
+
+// สร้างหน้าแรกใหม่ทุกชั่วโมง เพื่อซ่อนโปรโมชันที่หมดเขตเอง
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -20,6 +24,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
+      <Promotions />
       <HouseTypes />
       <Concept />
       <Facilities />

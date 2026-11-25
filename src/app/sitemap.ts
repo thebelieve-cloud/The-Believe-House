@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { houses } from '@/lib/houses';
 import { getAllPostSlugs, getCategories } from '@/lib/wordpress';
+import { activePromotions } from '@/lib/promotions';
 
 // สร้าง sitemap ใหม่ทุก 10 นาที เพื่อให้บทความที่ลงใหม่ใน WordPress เข้า sitemap เอง
 export const revalidate = 600;
@@ -26,6 +27,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'monthly' as const,
             priority: 0.8,
         })),
+        // หน้าโปรโมชันใส่ใน sitemap เฉพาะช่วงที่มีโปร (ช่วงไม่มีโปร หน้านี้ตั้ง noindex)
+        ...(activePromotions().length > 0
+            ? [{ url: `${baseUrl}/promotion`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 }]
+            : []),
         {
             url: `${baseUrl}/blog`,
             lastModified: latestPost ? new Date(latestPost) : new Date(),
