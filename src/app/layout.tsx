@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -87,10 +88,12 @@ export default function RootLayout({
     "image": `${SITE_URL}/asset/the believe logo.jpg`,
     "@id": SITE_URL,
     "url": SITE_URL,
-    "telephone": "+66944462645",
+    "logo": `${SITE_URL}/asset/the believe logo.jpg`,
+    "description": SITE_DESCRIPTION,
+    "telephone": "+66909492492", // ตรงกับเบอร์ที่แสดงบนเว็บ 090 949 2492
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "ทำเลสามพราน 13",
+      "streetAddress": "ซอยสามพราน 13 ถนนเพชรเกษม",
       "addressLocality": "Sam Phran",
       "addressRegion": "Nakhon Pathom",
       "postalCode": "73110",
@@ -98,7 +101,8 @@ export default function RootLayout({
     },
     // ลิงก์ Social Media
     "sameAs": [
-      "https://www.facebook.com/thebelievehouse"
+      "https://www.facebook.com/thebelievehouse",
+      "https://lin.ee/RW9gYI5"
     ]
   };
 
@@ -118,6 +122,7 @@ export default function RootLayout({
       <body className={`${prompt.variable} font-sans antialiased bg-white text-gray-900`}>
         {children}
         <GoogleAnalytics gaId="G-VHJ7KEQEP5" />
+        <AnalyticsEvents />
       </body>
     </html>
   );

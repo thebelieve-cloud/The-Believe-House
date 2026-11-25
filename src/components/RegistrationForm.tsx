@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,7 +27,8 @@ export default function RegistrationForm() {
                 body: formData,
             });
 
-            // ข้อมูลส่งสำเร็จ
+            // ข้อมูลส่งสำเร็จ: นับเป็น "ลูกค้าลงทะเบียน" ใน Google Analytics (ไม่ส่งชื่อ/เบอร์ไปที่ GA)
+            sendGAEvent("event", "generate_lead", { form_name: "registration", page_path: window.location.pathname });
             setIsSuccess(true);
             form.reset();
         } catch (error) {

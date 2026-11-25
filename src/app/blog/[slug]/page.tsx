@@ -5,25 +5,24 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { plainText, blogPostingLd, breadcrumbLd, faqLd, ldJson } from "@/lib/jsonld";
 
 // ดึงบทความใหม่ทุก 10 นาที
 export const revalidate = 600;
 
-// ตัดแท็ก HTML และแปลง &amp; / &#8211; ฯลฯ ให้เป็นข้อความธรรมดา (ใช้ใน title/description)
-function cleanText(html?: string | null): string {
-    if (!html) return "";
-    return html
-        .replace(/<[^>]+>/g, "")
-        .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&")
-        .replace(/&quot;/g, '"')
-        .replace(/&#039;|&apos;/g, "'")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/\[&hellip;\]|&hellip;/g, "…")
-        .replace(/\s+/g, " ")
-        .trim();
+type Post = NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>;
+
+// title/description/url ของบทความ ใช้ร่วมกันทั้ง metadata และ JSON-LD
+function postSeo(post: Post, slug: string) {
+    // Yoast ใส่ชื่อเว็บหลังบ้านต่อท้าย (" - backend.thebelievehouse.com") ต้องตัดออก
+    // layout เติม " | The Believe House สามพราน" ให้เองจาก title.template
+    const title = plainText(post.seo?.title || post.title)
+        .replace(/\s*[-|–]\s*backend\.thebelievehouse\.com.*$/i, "")
+        .replace(/\s*[-|–]\s*The Believe House.*$/i, "")
+        || plainText(post.title);
+    const description =
+        plainText(post.seo?.metaDesc) || plainText(post.excerpt).slice(0, 160) || "บทความจาก The Believe House สามพราน";
+    return { title, description, url: `/blog/${post.slug || slug}` };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -36,15 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
-    // Yoast ใส่ชื่อเว็บหลังบ้านต่อท้าย (" - backend.thebelievehouse.com") ต้องตัดออก
-    // layout เติม " | The Believe House สามพราน" ให้เองจาก title.template
-    const title = cleanText(post.seo?.title || post.title)
-        .replace(/\s*[-|–]\s*backend\.thebelievehouse\.com.*$/i, "")
-        .replace(/\s*[-|–]\s*The Believe House.*$/i, "")
-        || cleanText(post.title);
-    const description =
-        cleanText(post.seo?.metaDesc) || cleanText(post.excerpt).slice(0, 160) || "บทความจาก The Believe House สามพราน";
-    const url = `/blog/${post.slug || slug}`;
+    const { title, description, url } = postSeo(post, slug);
 
     return {
         title,
@@ -70,8 +61,29 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         notFound();
     }
 
+    const { title, description, url } = postSeo(post, slug);
+    const faq = faqLd(post.content);
+
     return (
         <main className="min-h-screen bg-white flex flex-col pt-20">
+            {/* โครงสร้างข้อมูลให้ Google: บทความ, เส้นทางหน้า, คำถามที่พบบ่อย */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={ldJson(blogPostingLd({
+                    title, description, path: url,
+                    image: post.featuredImage?.node?.sourceUrl,
+                    datePublished: post.date, dateModified: post.modified,
+                }))}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={ldJson(breadcrumbLd([
+                    { name: "หน้าแรก", path: "/" },
+                    { name: "บทความ", path: "/blog" },
+                    { name: title, path: url },
+                ]))}
+            />
+            {faq && <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(faq)} />}
             <Navbar />
 
             <article className="flex-grow py-16 md:py-24">

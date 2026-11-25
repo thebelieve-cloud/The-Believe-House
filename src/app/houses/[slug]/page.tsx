@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HouseGallery from "@/components/HouseGallery";
 import { houses, getHouse } from "@/lib/houses";
+import { SITE_URL, breadcrumbLd, ldJson } from "@/lib/jsonld";
 
 export function generateStaticParams() {
     return houses.map((house) => ({ slug: house.slug }));
@@ -43,8 +44,38 @@ export default async function HousePage({ params }: { params: Promise<{ slug: st
         { icon: Car, label: "ที่จอดรถ", value: `${house.cars} คัน` },
     ];
 
+    const path = `/houses/${house.slug}`;
+    const houseLd = {
+        "@context": "https://schema.org",
+        "@type": "SingleFamilyResidence",
+        name: `บ้าน ${house.name} (${house.nameTh}) ${house.type} The Believe House สามพราน`,
+        description: house.description,
+        url: `${SITE_URL}${path}`,
+        image: house.gallery.slice(0, 5).map((g) => `${SITE_URL}${g}`),
+        numberOfRooms: house.beds,
+        numberOfBedrooms: house.beds,
+        numberOfBathroomsTotal: house.baths,
+        floorSize: { "@type": "QuantitativeValue", value: parseFloat(house.area), unitCode: "MTK" },
+        address: {
+            "@type": "PostalAddress",
+            streetAddress: "ซอยสามพราน 13 ถนนเพชรเกษม",
+            addressLocality: "Sam Phran",
+            addressRegion: "Nakhon Pathom",
+            postalCode: "73110",
+            addressCountry: "TH",
+        },
+    };
+
     return (
         <main className="min-h-screen bg-gray-50 flex flex-col pt-20">
+            <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(houseLd)} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={ldJson(breadcrumbLd([
+                    { name: "หน้าแรก", path: "/" },
+                    { name: `บ้าน ${house.name}`, path },
+                ]))}
+            />
             <Navbar />
 
             <section className="flex-grow py-16 md:py-24">
