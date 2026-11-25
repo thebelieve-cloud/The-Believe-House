@@ -1,5 +1,6 @@
 import { getPostBySlug, getAllPosts } from "@/lib/wordpress";
 import PostCard from "@/components/PostCard";
+import VisitCTA from "@/components/VisitCTA";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
@@ -143,6 +144,8 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         className="article-content mt-8"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
+
+                    <VisitCTA />
 
                 </div>
             </article>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
+import MobileContactBar from "@/components/MobileContactBar";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -121,6 +122,7 @@ export default function RootLayout({
       </head>
       <body className={`${prompt.variable} font-sans antialiased bg-white text-gray-900`}>
         {children}
+        <MobileContactBar />
         <GoogleAnalytics gaId="G-VHJ7KEQEP5" />
         <AnalyticsEvents />
       </body>
