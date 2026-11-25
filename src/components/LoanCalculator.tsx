@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
-import { CalendarCheck, MessageCircle, CheckCircle2, XCircle } from "lucide-react";
+import { CalendarCheck, MessageCircle, CheckCircle2, XCircle, Phone } from "lucide-react";
 import { houses } from "@/lib/houses";
 import { DSR, MAX_YEARS, fmt, minimumIncome, monthlyPayment, principalFromPayment } from "@/lib/loan";
 
@@ -157,7 +157,14 @@ export default function LoanCalculator() {
                     )}
 
                     <div>
-                        <Field id="rate" label="อัตราดอกเบี้ยเฉลี่ย (ตัวอย่าง ปรับได้)" suffix="% ต่อปี" value={rate} onChange={set(setRate)} />
+                        <Field
+                            id="rate"
+                            label="อัตราดอกเบี้ยเฉลี่ย (ตัวอย่าง ปรับได้)"
+                            suffix="% ต่อปี"
+                            value={rate}
+                            onChange={set(setRate)}
+                            hint="อยากรู้อัตราดอกเบี้ยล่าสุดของ ธอส. ออมสิน กรุงไทย สอบถามฝ่ายขายได้ฟรี"
+                        />
                         <Chips
                             active={rate}
                             onPick={set(setRate)}
@@ -224,22 +231,37 @@ export default function LoanCalculator() {
                             ขึ้นอยู่กับการพิจารณาของแต่ละธนาคาร
                         </p>
 
-                        <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                            <a
-                                href="https://lin.ee/RW9gYI5"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#06C755] px-5 py-3.5 font-semibold text-white hover:bg-[#05b34c] transition-colors"
-                            >
-                                <MessageCircle className="w-5 h-5" aria-hidden="true" />
-                                ปรึกษาการยื่นกู้ฟรี
-                            </a>
+                        {/* ชวนติดต่อฝ่ายขาย: ข้อมูลดอกเบี้ย/วงเงินจริงให้ฝ่ายขายเป็นคนตอบ */}
+                        <div className="mt-6 rounded-2xl bg-amber-50 border border-amber-100 p-4 md:p-5">
+                            <p className="font-semibold text-gray-900">อยากรู้ตัวเลขจริงสำหรับคุณ?</p>
+                            <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+                                ฝ่ายขายช่วยเช็กอัตราดอกเบี้ยล่าสุด ประเมินวงเงินที่ธนาคารน่าจะอนุมัติ
+                                และแนะนำเอกสารยื่นกู้ให้ฟรี
+                            </p>
+                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <a
+                                    href="tel:0909492492"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-primary px-5 py-3.5 font-semibold text-white hover:bg-primary/90 transition-colors"
+                                >
+                                    <Phone className="w-5 h-5" aria-hidden="true" />
+                                    โทร 090-949-2492
+                                </a>
+                                <a
+                                    href="https://lin.ee/RW9gYI5"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#06C755] px-5 py-3.5 font-semibold text-white hover:bg-[#05b34c] transition-colors"
+                                >
+                                    <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                                    ถามฝ่ายขายทาง LINE
+                                </a>
+                            </div>
                             <Link
                                 href="/#register"
-                                className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-primary px-5 py-3.5 font-semibold text-white hover:bg-primary/90 transition-colors"
+                                className="mt-3 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-primary bg-white px-5 py-3 font-semibold text-primary hover:bg-primary hover:text-white transition-colors"
                             >
                                 <CalendarCheck className="w-5 h-5" aria-hidden="true" />
-                                นัดชมบ้านตัวอย่าง
+                                ลงทะเบียนให้ฝ่ายขายติดต่อกลับ
                             </Link>
                         </div>
                     </div>
