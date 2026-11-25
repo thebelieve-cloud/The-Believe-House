@@ -27,6 +27,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'monthly' as const,
             priority: 0.8,
         })),
+        {
+            url: `${baseUrl}/loan-calculator`,
+            lastModified: new Date('2026-11-25'),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        },
         // หน้าโปรโมชันใส่ใน sitemap เฉพาะช่วงที่มีโปร (ช่วงไม่มีโปร หน้านี้ตั้ง noindex)
         ...(activePromotions().length > 0
             ? [{ url: `${baseUrl}/promotion`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 }]

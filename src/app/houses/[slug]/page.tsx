@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Bed, Bath, Car, Maximize } from "lucide-react";
+import { ArrowLeft, Bed, Bath, Car, Maximize, Calculator } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HouseGallery from "@/components/HouseGallery";
@@ -108,6 +108,19 @@ export default async function HousePage({ params }: { params: Promise<{ slug: st
                                     <span className="font-semibold text-gray-900 text-lg">{value}</span>
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <p className="text-gray-700">
+                                ราคาเริ่มต้น <strong className="text-primary text-xl">{(house.startingPrice / 1e6).toFixed(2)} ล้านบาท</strong>
+                            </p>
+                            <Link
+                                href={`/loan-calculator?price=${house.startingPrice}`}
+                                className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors"
+                            >
+                                <Calculator className="w-4 h-4" aria-hidden="true" />
+                                คำนวณค่าผ่อนบ้าน {house.name}
+                            </Link>
                         </div>
                     </div>
 

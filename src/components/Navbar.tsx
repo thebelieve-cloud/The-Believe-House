@@ -26,6 +26,7 @@ export default function Navbar() {
         { name: "แนวคิดโครงการ", href: "/#concept" },
         { name: "ทำเลที่ตั้ง", href: "/#location" },
         { name: "ติดต่อเรา", href: "/#contact" },
+        { name: "คำนวณผ่อน", href: "/loan-calculator" },
         { name: "บทความ", href: "/blog" },
     ];
 

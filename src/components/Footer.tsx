@@ -45,6 +45,16 @@ export default function Footer() {
                                     Blog
                                 </a>
                             </li>
+                            <li>
+                                <a href="/promotion" className="text-white/70 hover:text-white transition-colors text-sm">
+                                    โปรโมชัน
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/loan-calculator" className="text-white/70 hover:text-white transition-colors text-sm">
+                                    คำนวณผ่อนบ้าน
+                                </a>
+                            </li>
                         </ul>
                     </div>
 

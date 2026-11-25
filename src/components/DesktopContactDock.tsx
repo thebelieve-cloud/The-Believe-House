@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, CalendarCheck } from "lucide-react";
+import { Phone, MessageCircle, CalendarCheck, Calculator } from "lucide-react";
 
 // แถบติดต่อลอยกลางล่างจอ สำหรับจอกว้าง (md ขึ้นไป) โผล่หลังเลื่อนลงมาเล็กน้อย
 // มือถือใช้ MobileContactBar แทน  /  การกดทุกปุ่มถูกนับใน GA ผ่าน AnalyticsEvents
@@ -65,9 +65,13 @@ export default function DesktopContactDock() {
                 >
                     <Phone className="w-5 h-5" />
                 </a>
-                <span className="hidden lg:block px-3 text-sm text-gray-700 font-medium whitespace-nowrap">
-                    สอบถามโครงการ 090-949-2492
-                </span>
+                <Link
+                    href="/loan-calculator"
+                    className="ml-1 inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 h-11 text-sm font-semibold text-gray-800 whitespace-nowrap hover:bg-gray-200 transition-colors"
+                >
+                    <Calculator className="w-4 h-4" aria-hidden="true" />
+                    คำนวณผ่อนบ้าน
+                </Link>
                 <Link
                     href="/#register"
                     className="inline-flex items-center gap-2 rounded-full bg-primary px-6 h-11 text-white font-semibold whitespace-nowrap hover:bg-primary/90 transition-colors"

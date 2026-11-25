@@ -7,6 +7,7 @@ export type House = {
     beds: number;
     baths: number;
     cars: number;
+    startingPrice: number; // ราคาเริ่มต้น (บาท) จากป้ายโฆษณาโครงการ
     description: string;
     tagline: string;
     img: string;
@@ -23,6 +24,7 @@ export const houses: House[] = [
         beds: 3,
         baths: 3,
         cars: 2,
+        startingPrice: 4390000,
         description: "บ้านแฝดดีไซน์โปร่งสไตล์โมเดิร์น พร้อมพื้นที่ใช้สอยกว้างขวาง ตอบโจทย์ครอบครัวขยาย",
         tagline: "บ้านที่เราเชื่อว่า...ลงตัวและตอบสนองทุกความต้องการ",
         img: "/asset/venita.jpg",
@@ -51,6 +53,7 @@ export const houses: House[] = [
         beds: 3,
         baths: 2,
         cars: 2,
+        startingPrice: 2990000,
         description: "ทาวน์แฝดฟังก์ชันครบครัน รูปแบบใหม่ที่ให้ความรู้สึกว่าความคุ้มค่านั้นมีอยู่จริง",
         tagline: "บ้านที่เราเชื่อว่า...ความคุ้มค่า นั้นมีอยู่จริง",
         img: "/asset/vera.jpg",
