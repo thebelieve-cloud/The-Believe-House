@@ -10,6 +10,7 @@ import RegistrationForm from "@/components/RegistrationForm";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Promotions from "@/components/Promotions";
+import HomeLoanCalculator from "@/components/HomeLoanCalculator";
 import type { Metadata } from "next";
 
 // สร้างหน้าแรกใหม่ทุกชั่วโมง เพื่อซ่อนโปรโมชันที่หมดเขตเอง
@@ -31,6 +32,7 @@ export default function Home() {
       <ConstructionProgress />
       <LocationMap />
       <CustomerTrust />
+      <HomeLoanCalculator />
       <Contact />
       <RegistrationForm />
       <Footer />

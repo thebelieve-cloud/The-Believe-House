@@ -66,7 +66,9 @@ function Row({ label, value, big }: { label: string; value: string; big?: boolea
     );
 }
 
-export default function LoanCalculator() {
+// headingLevel: ใช้ "h3" เมื่อวางในหน้าที่มีหัวข้อ h2 ครอบอยู่แล้ว (เช่น หน้าแรก)
+export default function LoanCalculator({ headingLevel = "h2" }: { headingLevel?: "h2" | "h3" }) {
+    const Heading = headingLevel;
     const [mode, setMode] = useState<"payment" | "capacity">("payment");
     const [amount, setAmount] = useState(withCommas(String(houses.find((h) => h.slug === "vera")?.startingPrice ?? 2990000)));
     const [income, setIncome] = useState("50,000");
@@ -133,9 +135,9 @@ export default function LoanCalculator() {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
                 {/* ช่องกรอก */}
                 <div className="space-y-6">
-                    <h2 className="text-xl md:text-2xl font-bold text-gray-900">
+                    <Heading className="text-xl md:text-2xl font-bold text-gray-900">
                         {mode === "payment" ? "คำนวณยอดผ่อนต่อเดือน แบบลดต้นลดดอก" : "คำนวณวงเงินกู้จากรายได้"}
-                    </h2>
+                    </Heading>
 
                     {mode === "payment" ? (
                         <div>
