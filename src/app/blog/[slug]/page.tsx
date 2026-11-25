@@ -1,4 +1,5 @@
-import { getPostBySlug } from "@/lib/wordpress";
+import { getPostBySlug, getAllPosts } from "@/lib/wordpress";
+import PostCard from "@/components/PostCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
@@ -63,6 +64,18 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
     const { title, description, url } = postSeo(post, slug);
     const faq = faqLd(post.content);
+    const category: { slug: string; name: string } | undefined = post.categories?.nodes?.find(
+        (c: { slug: string }) => c.slug !== "uncategorized",
+    );
+
+    // บทความที่เกี่ยวข้อง 3 เรื่อง: หมวดเดียวกันก่อน แล้วเติมด้วยบทความล่าสุด (ลิงก์ภายในช่วย SEO)
+    const allPosts = await getAllPosts();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const others = allPosts.filter((p: any) => p.slug !== post.slug);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sameCat = others.filter((p: any) => category && p.categories?.nodes?.some((c: { slug: string }) => c.slug === category.slug));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const related = [...sameCat, ...others.filter((p: any) => !sameCat.includes(p))].slice(0, 3);
 
     return (
         <main className="min-h-screen bg-white flex flex-col pt-20">
@@ -80,6 +93,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                 dangerouslySetInnerHTML={ldJson(breadcrumbLd([
                     { name: "หน้าแรก", path: "/" },
                     { name: "บทความ", path: "/blog" },
+                    ...(category ? [{ name: category.name, path: `/blog/category/${category.slug}` }] : []),
                     { name: title, path: url },
                 ]))}
             />
@@ -101,6 +115,14 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                                 month: "long",
                                 day: "numeric",
                             })}
+                            {category && (
+                                <>
+                                    <span className="text-gray-300 mx-2">|</span>
+                                    <Link href={`/blog/category/${category.slug}`} className="hover:text-amber-700 underline-offset-4 hover:underline">
+                                        {category.name}
+                                    </Link>
+                                </>
+                            )}
                         </p>
                         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-8">
                             {post.title}
@@ -124,6 +146,22 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
                 </div>
             </article>
+
+            {related.length > 0 && (
+                <section aria-labelledby="related-heading" className="bg-gray-50 py-16 md:py-20">
+                    <div className="container mx-auto px-4 md:px-12 max-w-7xl">
+                        <h2 id="related-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">
+                            บทความที่เกี่ยวข้อง
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                            {related.map((p: any) => (
+                                <PostCard key={p.id} post={p} headingLevel="h3" />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <Footer />
         </main>

@@ -14,6 +14,12 @@ export async function getAllPosts() {
           slug
           date
           excerpt
+          categories {
+            nodes {
+              slug
+              name
+            }
+          }
           featuredImage {
             node {
               sourceUrl
@@ -56,6 +62,12 @@ export async function getPostBySlug(slug: string) {
         excerpt
         date
         modified
+        categories {
+          nodes {
+            slug
+            name
+          }
+        }
         seo {
           title
           metaDesc
@@ -112,6 +124,42 @@ export async function getAllPostSlugs(): Promise<{ slug: string; modified: strin
     return data?.posts?.nodes || [];
   } catch (error) {
     console.error("Error fetching post slugs for sitemap:", error);
+    return [];
+  }
+}
+
+export type BlogCategory = { slug: string; name: string; description: string; count: number };
+
+// หมวดบทความที่มีบทความอยู่ (ไม่รวม Uncategorized) ใช้ทำหน้าหมวด เมนูหมวด และ sitemap
+export async function getCategories(): Promise<BlogCategory[]> {
+  const query = `
+    query AllCategories {
+      categories(first: 100) {
+        nodes {
+          slug
+          name
+          description
+          count
+        }
+      }
+    }
+  `;
+
+  try {
+    const res = await fetch(WP_GRAPHQL_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) throw new Error(`Failed to fetch API: ${res.statusText}`);
+    const { data } = await res.json();
+    const nodes: BlogCategory[] = data?.categories?.nodes || [];
+    return nodes
+      .filter((c) => c.slug !== "uncategorized" && (c.count ?? 0) > 0)
+      .map((c) => ({ ...c, description: c.description || "" }));
+  } catch (error) {
+    console.error("Error fetching categories:", error);
     return [];
   }
 }
