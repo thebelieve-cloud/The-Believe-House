@@ -73,12 +73,12 @@ export default function NearbyPlaces() {
                     <h4 className="sr-only">{cat.title}</h4>
                     <ul className="divide-y divide-gray-100">
                         {cat.places.map((p) => (
-                            <li key={p.name} className="py-3.5 grid grid-cols-[1fr_auto] md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2">
+                            <li key={p.name} className="py-3.5 grid grid-cols-[1fr_auto] md:grid-cols-[minmax(0,17rem)_1fr_9.5rem] items-center gap-x-4 gap-y-2">
                                 <span className="font-medium text-gray-900 text-sm md:text-base min-w-0">{p.name}</span>
                                 {/* แถบระยะทาง เทียบสเกล 0–20 กม. */}
                                 <span className="col-span-2 md:col-span-1 order-last md:order-none h-2 rounded-full bg-gray-100 overflow-hidden" aria-hidden="true">
                                     <span
-                                        className="block h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-600"
+                                        className="block h-full rounded-full bg-gradient-to-r from-[#3b6c99] to-primary"
                                         style={{ width: `${Math.max(4, Math.min(100, (p.km / MAX_KM) * 100))}%` }}
                                     />
                                 </span>
