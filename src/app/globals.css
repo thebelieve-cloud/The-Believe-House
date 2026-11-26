@@ -193,3 +193,18 @@ body {
   color: #6b7280;
   text-align: center;
 }
+/* ตารางในบทความ: ห้ามตัดคำกลางคำ (เช่น "VENIT/A", "ทาวน์/แฝด")
+   คอลัมน์จะกว้างพอดีข้อความ ถ้าตารางกว้างเกินจอ (มือถือ) ให้เลื่อนซ้าย-ขวาในกรอบตาราง */
+.article-content table th,
+.article-content table td {
+  white-space: nowrap;
+  padding: 10px 11px !important; /* ทับ inline style 10px 14px ให้ตาราง 6 คอลัมน์พอดีคอลัมน์บทความบนจอคอม */
+}
+.article-content table {
+  margin: 0;
+  font-size: 0.9em !important;
+}
+.article-content div:has(> table) {
+  margin: 1.75em 0;
+  -webkit-overflow-scrolling: touch;
+}
