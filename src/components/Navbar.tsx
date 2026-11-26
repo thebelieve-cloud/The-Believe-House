@@ -49,12 +49,13 @@ export default function Navbar() {
                 </a>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) => (
+                <nav className="hidden lg:flex items-center gap-5 xl:gap-8 ml-8">
+                    {/* บนจอกว้างมีปุ่ม "ติดต่อเรา" ด้านขวาอยู่แล้ว จึงไม่แสดงลิงก์ข้อความซ้ำ */}
+                    {navLinks.filter((link) => link.href !== "/#contact").map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
-                            className={`text-sm font-medium transition-colors hover:opacity-70 ${solid ? "text-gray-800" : "text-white"
+                            className={`text-sm font-medium whitespace-nowrap transition-colors hover:opacity-70 ${solid ? "text-gray-800" : "text-white"
                                 }`}
                         >
                             {link.name}
@@ -62,7 +63,7 @@ export default function Navbar() {
                     ))}
                     <a
                         href="#contact"
-                        className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${solid
+                        className={`px-6 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 transform hover:scale-105 ${solid
                             ? "bg-primary text-white hover:bg-primary/90 shadow-md"
                             : "bg-white text-primary hover:bg-white/90"
                             }`}
@@ -73,7 +74,7 @@ export default function Navbar() {
 
                 {/* Mobile menu button */}
                 <button
-                    className="md:hidden z-50 p-2"
+                    className="lg:hidden z-50 p-2"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle menu"
                 >
@@ -91,7 +92,7 @@ export default function Navbar() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute top-0 left-0 w-full h-screen bg-white shadow-xl flex flex-col pt-24 pb-8 px-6 md:hidden items-center text-center max-h-screen overflow-y-auto"
+                            className="absolute top-0 left-0 w-full h-screen bg-white shadow-xl flex flex-col pt-24 pb-8 px-6 lg:hidden items-center text-center max-h-screen overflow-y-auto"
                         >
                             <div className="flex flex-col space-y-8 w-full">
                                 {navLinks.map((link) => (

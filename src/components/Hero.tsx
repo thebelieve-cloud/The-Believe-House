@@ -59,8 +59,17 @@ export default function Hero() {
                 >
                     The Believe House
                     <br />
-                    <span className="font-light">ความเชื่อที่คุณสัมผัสได้</span>
+                    {/* บรรทัดคำหลัก SEO: บ้านแฝด ทาวน์แฝด สามพราน */}
+                    <span className="font-light">บ้านแฝด ทาวน์แฝด สามพราน</span>
                 </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                    className="text-xl md:text-2xl text-white font-light mb-4 drop-shadow-md"
+                >
+                    ความเชื่อที่คุณสัมผัสได้
+                </motion.p>
 
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
