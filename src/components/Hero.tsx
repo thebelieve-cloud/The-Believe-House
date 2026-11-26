@@ -57,20 +57,11 @@ export default function Hero() {
                     transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
                     className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-md"
                 >
-                    {/* คำหลักหลักของหน้าแรก: บ้านสามพราน (อยู่เหนือชื่อแบรนด์) */}
-                    <span className="block text-2xl md:text-3xl lg:text-4xl font-medium text-amber-200 mb-2 md:mb-3">บ้านสามพราน</span>
+                    {/* หัวข้อตามแบรนด์ (ผู้ใช้เลือกกลับเป็นแบบเดิม 26 พ.ย. 2569) */}
                     The Believe House
                     <br />
-                    <span className="font-light">บ้านแฝด ทาวน์แฝด อิฐแดง</span>
+                    <span className="font-light">ความเชื่อที่คุณสัมผัสได้</span>
                 </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                    className="text-xl md:text-2xl text-white font-light mb-4 drop-shadow-md"
-                >
-                    ความเชื่อที่คุณสัมผัสได้
-                </motion.p>
 
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
