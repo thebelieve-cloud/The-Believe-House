@@ -40,7 +40,7 @@ export default function Navbar() {
                 <a href="/" className="flex-shrink-0 z-50 group flex items-center gap-3">
                     <img 
                         src="/asset/the believe logo.jpg" 
-                        alt="The Believe Logo" 
+                        alt="โลโก้ The Believe House หมู่บ้านสามพราน" 
                         className="h-10 md:h-12 w-auto object-contain rounded-sm shadow-sm" 
                     />
                     <h2 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 hidden sm:block ${solid ? 'text-primary' : 'text-white group-hover:text-white/80'}`}>

@@ -35,7 +35,7 @@ export default function Hero() {
                 >
                     <img
                         src="/asset/the believe logo.jpg"
-                        alt="The Believe Logo"
+                        alt="โลโก้ The Believe House หมู่บ้านสามพราน"
                         className="h-32 md:h-48 lg:h-56 object-contain shadow-2xl rounded-md"
                     />
                 </motion.div>
@@ -57,10 +57,11 @@ export default function Hero() {
                     transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
                     className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-md"
                 >
+                    {/* คำหลักหลักของหน้าแรก: บ้านสามพราน (อยู่เหนือชื่อแบรนด์) */}
+                    <span className="block text-2xl md:text-3xl lg:text-4xl font-medium text-amber-200 mb-2 md:mb-3">บ้านสามพราน</span>
                     The Believe House
                     <br />
-                    {/* บรรทัดคำหลัก SEO: บ้านแฝด ทาวน์แฝด สามพราน */}
-                    <span className="font-light">บ้านแฝด ทาวน์แฝด สามพราน</span>
+                    <span className="font-light">บ้านแฝด ทาวน์แฝด อิฐแดง</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}

@@ -76,7 +76,7 @@ export default function Concept() {
                         <div className="absolute inset-0 bg-gray-200" />
                         <img
                             src="/asset/S__71909384.jpg"
-                            alt="Quality Red Brick Construction"
+                            alt="งานก่อสร้างบ้านสามพราน The Believe House ด้วยอิฐแดงทั้งหลัง"
                             className="absolute inset-0 w-full h-full object-cover"
                             onError={(e) => {
                                 e.currentTarget.src = "/api/placeholder/800/600";
@@ -97,7 +97,7 @@ export default function Concept() {
                         <div className="absolute inset-0 bg-gray-200" />
                         <img
                             src="/asset/S__71909386.jpg"
-                            alt="Premium Living Space"
+                            alt="ช่างก่อผนังอิฐแดง บ้านในหมู่บ้านสามพราน The Believe House"
                             className="absolute inset-0 w-full h-full object-cover"
                             onError={(e) => {
                                 e.currentTarget.src = "/api/placeholder/800/600";

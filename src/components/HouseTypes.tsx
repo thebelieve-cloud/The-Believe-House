@@ -18,7 +18,7 @@ export default function HouseTypes() {
                     <span className="text-primary font-semibold tracking-wider text-sm md:text-base uppercase mb-2 block">
                         House Types
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">แบบบ้านที่ตอบโจทย์คุณ</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">แบบบ้านสามพราน ที่ตอบโจทย์คุณ</h2>
                     <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
                 </motion.div>
 
@@ -35,7 +35,7 @@ export default function HouseTypes() {
                             <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                                 <img
                                     src={house.img}
-                                    alt={`แบบบ้าน ${house.name} - ${house.type}`}
+                                    alt={`บ้านสามพราน แบบบ้าน ${house.name} ${house.type} The Believe House`}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     onError={(e) => {
                                         e.currentTarget.src = "/api/placeholder/800/600";

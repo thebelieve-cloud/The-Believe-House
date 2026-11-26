@@ -148,7 +148,7 @@ export default function ConstructionProgress() {
                             >
                                 <img
                                     src={img}
-                                    alt={`ภาพโครงการ The Believe House ${index + 1}`}
+                                    alt={`ความคืบหน้าการก่อสร้าง หมู่บ้านสามพราน The Believe House ภาพที่ ${index + 1}`}
                                     className="w-full h-full object-cover pointer-events-none rounded-2xl"
                                 />
                                 {/* Dark overlay for background cards */}

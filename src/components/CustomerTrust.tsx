@@ -6,9 +6,9 @@ import { Heart } from "lucide-react";
 
 export default function CustomerTrust() {
     const customers = [
-        { id: 1, src: "/asset/the believe customer1.jpg", alt: "ลูกค้า The Believe House 1" },
-        { id: 2, src: "/asset/the believe customer2.jpg", alt: "ลูกค้า The Believe House 2" },
-        { id: 3, src: "/asset/the believe customer3.jpg", alt: "ลูกค้า The Believe House 3" },
+        { id: 1, src: "/asset/the believe customer1.jpg", alt: "ลูกค้าที่ซื้อบ้านสามพราน The Believe House 1" },
+        { id: 2, src: "/asset/the believe customer2.jpg", alt: "ลูกค้าที่ซื้อบ้านสามพราน The Believe House 2" },
+        { id: 3, src: "/asset/the believe customer3.jpg", alt: "ลูกค้าที่ซื้อบ้านสามพราน The Believe House 3" },
     ];
 
     return (
