@@ -53,8 +53,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Promotions />
-      <HouseTypes />
       <FloorPlans />
+      <HouseTypes />
       <Concept />
       <Facilities />
       <ConstructionProgress />
