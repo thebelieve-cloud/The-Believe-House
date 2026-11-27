@@ -22,7 +22,7 @@ export default function Navbar() {
     const navLinks = [
         { name: "หน้าแรก", href: "/" },
         { name: "โปรโมชัน", href: "/promotion" },
-        { name: "แบบบ้าน", href: "/#houses" },
+        { name: "แบบบ้าน", href: "/#plans" }, // ไปส่วนแบบแปลนบ้าน (อยู่บนสุดของกลุ่มแบบบ้าน)
         { name: "แนวคิดโครงการ", href: "/#concept" },
         { name: "ทำเลที่ตั้ง", href: "/#location" },
         { name: "ติดต่อเรา", href: "/#contact" },
